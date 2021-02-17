@@ -3,7 +3,7 @@ package com.baekjoon;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class SV1316_±×·ì´Ü¾îÃ¼Ä¿ {
+public class SV1316_그룹단어체커 {
 	static int T;
 
 	public static void main(String[] args) {

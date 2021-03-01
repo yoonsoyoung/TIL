@@ -2,11 +2,11 @@ package com.baekjoon;
 
 import java.util.Scanner;
 
-//Åë°ú
-public class »öÁ¾ÀÌºÙÀÌ±â_prac {
+//í†µê³¼
+public class ìƒ‰ì¢…ì´ë¶™ì´ê¸°_17136 {
 
-	static int[][] paper = new int[10][10]; //Á¾ÀÌ
-	static int[] colorPaper = {0, 5, 5, 5, 5, 5}; //»öÁ¾ÀÌ
+	static int[][] paper = new int[10][10]; //ì¢…ì´
+	static int[] colorPaper = {0, 5, 5, 5, 5, 5}; //ìƒ‰ì¢…ì´
 	static int ans = Integer.MAX_VALUE; 
 	
 	public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class »öÁ¾ÀÌºÙÀÌ±â_prac {
 
 	
 	private static void backtrack(int cnt) {
-		// Ã³À½À¸·Î 1À» ¸¸³ª´Â °÷
+		// ì²˜ìŒìœ¼ë¡œ 1ì„ ë§Œë‚˜ëŠ” ê³³
 		int sR = -1, sC = -1;
 		out: for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
@@ -36,13 +36,13 @@ public class »öÁ¾ÀÌºÙÀÌ±â_prac {
 			}
 		}
 		
-		// ¾Æ¿¹ ¾È °ÅÄ§
+		// ì•„ì˜ˆ ì•ˆ ê±°ì¹¨
 		if( sR == -1 && sC == -1) {
 			ans = Math.min(ans, cnt);
 			return;
 		}
 		
-		// ºÙÀÏ ¼ö ÀÖ´Â »öÁ¾ÀÌÀÇ »çÀÌÁî
+		// ë¶™ì¼ ìˆ˜ ìˆëŠ” ìƒ‰ì¢…ì´ì˜ ì‚¬ì´ì¦ˆ
 		int max = 5;
 		while(max > 0) {
 			boolean isCheck = true;
@@ -61,7 +61,7 @@ public class »öÁ¾ÀÌºÙÀÌ±â_prac {
 			max--;
 		}
 		
-		// ±× »öÁ¾ÀÌ·Î ºÙÀÌ°í
+		// ê·¸ ìƒ‰ì¢…ì´ë¡œ ë¶™ì´ê³ 
 		for(int i = 1 ; i<=max ; i++) {
 			if(colorPaper[i] == 0)
 				continue;

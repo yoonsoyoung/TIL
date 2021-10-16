@@ -1,14 +1,13 @@
-package com.baekjoon;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
 import java.util.StringTokenizer;
 
 // 통과 512ms
 public class 연결요소의개수_11724 {
 
-	static int N, M, parent[], set[], ans;
+	static int N, M, parent[];
 	static Node[] nodeList;
 
 	static class Node {
@@ -50,7 +49,6 @@ public class 연결요소의개수_11724 {
 		N = Integer.parseInt(st.nextToken()); // 정점의 개수
 		M = Integer.parseInt(st.nextToken()); // 간선의 개수
 		parent = new int[N + 1];
-		set = new int[N + 1];
 		nodeList = new Node[N];
 
 		make();
@@ -63,15 +61,24 @@ public class 연결요소의개수_11724 {
 			union(a, b);
 		}
 		
+//		int[] set = new int[N + 1];
+//		for (int i = 1; i <= N; i++) {
+//			set[find(i)]++;
+//		}
+//		
+//		int ans = 0;
+//		for (int a : set) {
+//			if(a != 0)
+//				ans++;
+//		}
+//		System.out.println(ans);
+		
+		// 통과 484ms
+		HashSet<Integer> set = new HashSet<>();
 		for (int i = 1; i <= N; i++) {
-			set[find(i)]++;
+			set.add(find(i)); // hashset은 중복을 비허용하므로 이미 있는 요소가 나오면 무시
 		}
 		
-		ans = 0;
-		for (int a : set) {
-			if(a != 0)
-				ans++;
-		}
-		System.out.println(ans);
+		System.out.println(set.size());
 	}
 }

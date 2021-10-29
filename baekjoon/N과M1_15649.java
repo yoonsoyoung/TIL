@@ -5,15 +5,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-// 통과 
+// 통과 2356ms, StringBuilder 328ms
 public class boj_15649_Main {
 
 	static int N, M, res[];
 	static boolean selected[];
+	static StringBuilder sb;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		sb = new StringBuilder();
 
 		N = Integer.parseInt(st.nextToken()); // 1~N 까지 자연수
 		M = Integer.parseInt(st.nextToken()); // nCm
@@ -22,15 +24,16 @@ public class boj_15649_Main {
 
 		// 중복 순열
 		perm(0);
+		System.out.println(sb);
 
 	}
 
 	private static void perm(int idx) {
 		if (idx == M) {
 			for (int i = 0; i < M; i++) {
-				System.out.print(res[i] + " ");
+				sb.append(res[i] + " ");
 			}
-			System.out.println();
+			sb.append("\n");
 			return;
 		}
 

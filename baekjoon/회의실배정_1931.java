@@ -1,46 +1,54 @@
-package com.baekjoon;
+package ê·¸ë¦¬ë””;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
-public class È¸ÀÇ½Ç¹èÁ¤_1931 {
+// í†µê³¼ 512ms
+public class Main_1931 {
 
 	static int N, ans;
 	static int[][] time;
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		N = sc.nextInt();
-		time = new int[N][2]; //0¿­Àº ½ÃÀÛ½Ã°£ 1¿­Àº ³¡³ª´Â ½Ã°£
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = null;
+		
+		N = Integer.parseInt(br.readLine());
+		time = new int[N][2];
 		for (int i = 0; i < N; i++) {
-			time[i][0] = sc.nextInt(); //½ÃÀÛ ½Ã°£
-			time[i][1] = sc.nextInt(); //³¡³ª´Â ½Ã°£
+			st = new StringTokenizer(br.readLine(), " ");
+			time[i][0] = Integer.parseInt(st.nextToken()); // ì‹œì‘
+			time[i][1] = Integer.parseInt(st.nextToken()); // ë
 		}
 		
-		// ³¡³ª´Â ½Ã°£ÀÌ ÀÌ¸¥ ¼øÀ¸·Î Á¤·Ä -> ÀÍ¸íÅ¬·¡½º comparator·Î Á¤·Ä ¿À¸§Â÷¼ø= ³»²¨-³²ÀÇ²¨ 
-		Arrays.sort(time, new Comparator<int[]>() { //¸ÕÀú ½ÃÀÛÇÏ´Â ¼ø¼­
+		// ëë‚˜ëŠ” ì‹œê°„ ì˜¤ë¦„ì°¨ìˆœ = ë‚´êº¼-ë‚¨ì˜êº¼
+		Arrays.sort(time, new Comparator<int[]>() {
+
 			@Override
 			public int compare(int[] o1, int[] o2) {
-				if(o1[1] == o2[1]) //³¡³ª´Â ½Ã°£ °°´Ù¸é
-					return o1[0]-o2[0]; //´õ ¸ÕÀú ½ÃÀÛÇÏ´Â ¾Ö·Î
-				else
-					return o1[1]-o2[1]; //´õ ¸ÕÀú ³¡³ª´Â ¾Ö
+				if(o1[1] == o2[1]) { // ëë‚˜ëŠ” ì‹œê°„ ê°™ìŒ
+					return o1[0] - o2[0]; // ë” ë¨¼ì € ì‹œì‘
+				} else {
+					return o1[1] - o2[1]; // ë” ë¨¼ì € ë
+				}
 			}
 		});
-		int currS = time[0][0]; //°¡Àå »¡¸® ³¡³ª´Â È¸ÀÇÀÇ ½ÃÀÛ ½Ã°£
-		int currE = time[0][1]; //°¡Àå »¡¸® ³¡³ª´Â È¸ÀÇÀÇ Á¾·á ½Ã°£
-		ans = 1; //°¡Àå »¡¸® ³¡³ª´Â È¸ÀÇ ±âº»À¸·Î ³Ö°í ½ÃÀÛ.
+		
+		int currStart = time[0][0]; // ë¹¨ë¦¬ ëë‚˜ëŠ” íšŒì˜ ì‹œì‘ ì‹œê°„
+		int currEnd = time[0][1]; // ë¹¨ë¦¬ ëë‚˜ëŠ” íšŒì˜ ì¢…ë£Œ ì‹œê°„
+		ans = 1;
 		for (int i = 1; i < N; i++) {
-			//´ÙÀ½ È¸ÀÇÀÇ ½ÃÀÛ½Ã°£ÀÌ ÃÖ±Ù È¸ÀÇÀÇ Á¾·á½Ã°£°ú °°°Å³ª ÀÌÈÄÀÏ ¶§
-			if(time[i][0] >= currE) {
-				currS = time[i][0];
-				currE = time[i][1];
-//				System.out.println(time[i][0] + ", " + time[i][1]);
+			// ë‹¤ìŒ íšŒì˜ ì‹œì‘ ì‹œê°„ì´ ìµœê·¼ íšŒì˜ì˜ ì¢…ë£Œì‹œê°„ê³¼ ê°™ê±°ë‚˜ ì´í›„
+			if(time[i][0] >= currEnd) {
+				currStart = time[i][0];
+				currEnd = time[i][1];
 				ans++;
 			}
 		}
-		
 		System.out.println(ans);
 	}
-	
+
 }

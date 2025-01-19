@@ -20,7 +20,8 @@ class Solution {
         
         for(int i = 0; i < n; i++) {
             if(!visited[i]) {
-                answer = dfs(i, 0) > 0 ? answer : answer + 1;
+                dfs(i, 0);
+                answer++;
             }
         }
     

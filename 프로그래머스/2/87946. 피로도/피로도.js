@@ -1,7 +1,6 @@
 function solution(k, dungeons) {
     var answer = -1;
     let visited = Array(dungeons.length).fill(false);
-    let result = [];
     
     function dfs(idx, cnt) {
         answer = Math.max(answer, cnt);
@@ -10,7 +9,6 @@ function solution(k, dungeons) {
                 visited[i] = true;
                 k -= dungeons[i][1];
                 
-                result.push(cnt + 1);
                 dfs(idx + 1, cnt + 1);
                 
                 // 복구

@@ -16,24 +16,12 @@ public class Main {
 		int ans = 0;
 		for (int i = 0; i < N; i++) {
 			if (table[i] == 'P') {
-				boolean isFind = false;
-				for(int j = M; j > 0; j--) {
-					if(i - j >= 0 && table[i - j] == 'H') {
-						table[i - j] = ' ';
+				for(int j = i - M; j <= i + M; j++) {
+					if(j >= 0 && j < N && table[j] == 'H') {
+						table[j] = ' ';
 						ans++;
-						isFind = true;
 						break;
 					}
-				}
-				
-				if(!isFind) {
-					for(int j = 1; j <= M; j++) {
-						if(i + j < N && table[i + j] == 'H') {
-							table[i + j] = ' ';
-							ans++;
-							break;
-						}
-					}					
 				}
 			}
 		}
